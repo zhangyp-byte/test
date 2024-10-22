@@ -1,0 +1,5132 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "XDATA",
+        "description": "上海数慧数据中心接口文档",
+        "contact": {
+            "name": "XDATA",
+            "url": "http://www.dist.com.cn",
+            "email": "xdata@dist.com.cn"
+        },
+        "license": {
+            "name": "禁止无关人员调用及恶意调用！"
+        },
+        "version": "1.0.0-SNAPSHOT"
+    },
+    "servers": [
+        {
+            "url": "http://192.168.1.228:62129",
+            "description": "Inferred Url"
+        }
+    ],
+    "tags": [
+        {
+            "name": "debug-util-controller",
+            "description": "Debug Util Controller"
+        },
+        {
+            "name": "x-sleuth-dev-controller",
+            "description": "X Sleuth Dev Controller"
+        },
+        {
+            "name": "场景模拟rest接口",
+            "description": "Scenario Simulation Controller"
+        },
+        {
+            "name": "审查任务",
+            "description": "Review Task Controller"
+        },
+        {
+            "name": "审查任务v2",
+            "description": "Review Task V 2 Controller"
+        },
+        {
+            "name": "审查意见",
+            "description": "Review Opinion Controller"
+        },
+        {
+            "name": "成果管理-成果包zip相关接口",
+            "description": "File Controller"
+        },
+        {
+            "name": "成果管理功能",
+            "description": "Result Project Controller"
+        },
+        {
+            "name": "方案对比分析功能",
+            "description": "Contrast Project Controller"
+        },
+        {
+            "name": "模型库相关接口",
+            "description": "Model Product Controller"
+        },
+        {
+            "name": "用户搜索记录相关接口",
+            "description": "Search Record Controller"
+        },
+        {
+            "name": "组和组员相关接口",
+            "description": "Common Group And Member Controller"
+        }
+    ],
+    "paths": {
+        "/njcd/rest/public/cg/v1": {
+            "put": {
+                "tags": [
+                    "组和组员相关接口"
+                ],
+                "summary": "修改某个组基本信息",
+                "operationId": "updateCgUsingPUT",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CommonGroupUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/public/cg/v1/list": {
+            "get": {
+                "tags": [
+                    "组和组员相关接口"
+                ],
+                "summary": "获取组列表",
+                "operationId": "getCgsUsingGET",
+                "parameters": [
+                    {
+                        "name": "businessType",
+                        "in": "query",
+                        "description": "businessType",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "gtype",
+                        "in": "query",
+                        "description": "gtype",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CommonGroupDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/public/cg/v1/one": {
+            "post": {
+                "tags": [
+                    "组和组员相关接口"
+                ],
+                "summary": "添加一个组",
+                "operationId": "saveSsUsingPOST",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CommonGroupCreateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommonGroupDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/public/cg/v1/one/{id}": {
+            "delete": {
+                "tags": [
+                    "组和组员相关接口"
+                ],
+                "summary": "删除一个组",
+                "operationId": "deleteCgUsingDELETE",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/public/cg/v1/sort": {
+            "put": {
+                "tags": [
+                    "组和组员相关接口"
+                ],
+                "summary": "修改组排序",
+                "operationId": "updateCgSortUsingPUT",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CommonGroupSortRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/public/cm/v1/fuzzy": {
+            "post": {
+                "tags": [
+                    "组和组员相关接口"
+                ],
+                "summary": "同一业务下个人及全局组员模糊查询",
+                "operationId": "fuzzyGetCmsUsingPOST",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CommonMemberFuzzyPageRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Pagination"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/public/cm/v1/list": {
+            "post": {
+                "tags": [
+                    "组和组员相关接口"
+                ],
+                "summary": "获取组员页",
+                "operationId": "getCgsUsingPOST",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CommonMemberPageRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Pagination"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/public/cm/v1/one": {
+            "put": {
+                "tags": [
+                    "组和组员相关接口"
+                ],
+                "summary": "更新单个组员",
+                "operationId": "updateCmUsingPUT",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CommonMemberUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "组和组员相关接口"
+                ],
+                "summary": "添加一个组员",
+                "operationId": "saveCgmUsingPOST",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CommonMemberCreateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommonMember"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/public/cm/v1/one/{id}": {
+            "get": {
+                "tags": [
+                    "组和组员相关接口"
+                ],
+                "summary": "根据组员id查询",
+                "operationId": "getCmByIdUsingGET",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommonMember"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "组和组员相关接口"
+                ],
+                "summary": "删除一个组员",
+                "operationId": "deleteCmUsingDELETE",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/contrast/bp/v1": {
+            "delete": {
+                "tags": [
+                    "方案对比分析功能"
+                ],
+                "summary": "删除建筑方案",
+                "operationId": "delBpsUsingDELETE",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/contrast/bp/v1/{id}": {
+            "post": {
+                "tags": [
+                    "方案对比分析功能"
+                ],
+                "summary": "编辑建筑方案",
+                "operationId": "updateBpUsingPOST",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BuildingProjectDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BuildingProjectDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/contrast/cdp/v1": {
+            "get": {
+                "tags": [
+                    "方案对比分析功能"
+                ],
+                "summary": "获取所有城市设计方案",
+                "operationId": "getAllCityDesignProjectsUsingGET",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CityDesignProjectDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/contrast/cp/v1": {
+            "put": {
+                "tags": [
+                    "方案对比分析功能"
+                ],
+                "summary": "编辑成果项目",
+                "operationId": "updateRpUsingPUT",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ContrastProjectUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "方案对比分析功能"
+                ],
+                "summary": "新建一个项目",
+                "operationId": "createRpUsingPOST",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ContrastProjectRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "方案对比分析功能"
+                ],
+                "summary": "删除项目",
+                "operationId": "delRpsUsingDELETE",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/contrast/cp/v1/page": {
+            "post": {
+                "tags": [
+                    "方案对比分析功能"
+                ],
+                "summary": "多条件分页查询项目",
+                "operationId": "pageGetRpUsingPOST",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BaseQueryRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PageData«ContrastProjectDto»"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/contrast/file/v1/export": {
+            "post": {
+                "tags": [
+                    "方案对比分析功能"
+                ],
+                "summary": "导出比对结果",
+                "operationId": "exportAnalyseResultUsingPOST",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/CityDesignProject"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/contrast/file/v1/{contrastId}": {
+            "post": {
+                "tags": [
+                    "方案对比分析功能"
+                ],
+                "summary": "上传建筑方案文件",
+                "operationId": "uploadFileUsingPOST",
+                "parameters": [
+                    {
+                        "name": "contrastId",
+                        "in": "path",
+                        "description": "contrastId",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "geojson",
+                        "in": "query",
+                        "description": "geojson",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "targetSpatialReference",
+                        "in": "query",
+                        "description": "targetSpatialReference",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sourceSpatialReference",
+                        "in": "query",
+                        "description": "sourceSpatialReference",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "file"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "description": "file",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BuildingProjectDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/contrast/v1/service": {
+            "delete": {
+                "tags": [
+                    "方案对比分析功能"
+                ],
+                "summary": "删除发布的地图服务",
+                "operationId": "deleteServiceUsingDELETE",
+                "parameters": [
+                    {
+                        "name": "url",
+                        "in": "query",
+                        "description": "要删除的服务地址",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "isReplace",
+                        "in": "query",
+                        "description": "将服务地址中的ip替换为域名",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/debug/download_file": {
+            "get": {
+                "tags": [
+                    "debug-util-controller"
+                ],
+                "summary": "downloadFile",
+                "operationId": "downloadFileUsingGET",
+                "parameters": [
+                    {
+                        "name": "filePath",
+                        "in": "query",
+                        "description": "filePath",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "delete",
+                        "in": "query",
+                        "description": "delete",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Resource"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/debug/dump_heap": {
+            "get": {
+                "tags": [
+                    "debug-util-controller"
+                ],
+                "summary": "dumpHeap",
+                "operationId": "dumpHeapUsingGET",
+                "parameters": [
+                    {
+                        "name": "filePath",
+                        "in": "query",
+                        "description": "filePath",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "live",
+                        "in": "query",
+                        "description": "live",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/debug/jvm_pid": {
+            "get": {
+                "tags": [
+                    "debug-util-controller"
+                ],
+                "summary": "getPid",
+                "operationId": "getPidUsingGET",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/file/v1/export/analyse": {
+            "get": {
+                "tags": [
+                    "成果管理-成果包zip相关接口"
+                ],
+                "summary": "导出传导分析结果",
+                "operationId": "exportAnalyseResultUsingGET",
+                "parameters": [
+                    {
+                        "name": "param",
+                        "in": "query",
+                        "description": "param",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "type",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/file/v1/file": {
+            "delete": {
+                "tags": [
+                    "成果管理-成果包zip相关接口"
+                ],
+                "summary": "删除上传的文件",
+                "operationId": "deleteFileUsingDELETE",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/file/v1/file/preview/{fileId}": {
+            "get": {
+                "tags": [
+                    "成果管理-成果包zip相关接口"
+                ],
+                "summary": "预览初始上传的文件",
+                "operationId": "getPreviewUrlUsingGET",
+                "parameters": [
+                    {
+                        "name": "fileId",
+                        "in": "path",
+                        "description": "fileId",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResourceFileUrlVO«object»"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/file/v1/file/reparse/{packageId}": {
+            "post": {
+                "tags": [
+                    "成果管理-成果包zip相关接口"
+                ],
+                "summary": "上传完成之后，解析zip包",
+                "operationId": "reparseResultPackageUsingPOST",
+                "parameters": [
+                    {
+                        "name": "packageId",
+                        "in": "path",
+                        "description": "packageId",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResultPackageParseVO"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/file/v1/line/upload": {
+            "post": {
+                "tags": [
+                    "成果管理-成果包zip相关接口"
+                ],
+                "summary": "上传范围线",
+                "operationId": "chunkUploadLineFileUsingPOST",
+                "parameters": [
+                    {
+                        "name": "targetcrs",
+                        "in": "query",
+                        "description": "目标坐标系",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sourcecrs",
+                        "in": "query",
+                        "description": "源坐标系",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "file"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "array",
+                                        "description": "file",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/GeojsonDTO"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/file/v1/line/upload/3d": {
+            "post": {
+                "tags": [
+                    "成果管理-成果包zip相关接口"
+                ],
+                "summary": "上传三维模型文件",
+                "operationId": "upload3dFileUsingPOST",
+                "parameters": [
+                    {
+                        "name": "targetSpatialReference",
+                        "in": "query",
+                        "description": "targetSpatialReference",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sourceSpatialReference",
+                        "in": "query",
+                        "description": "sourceSpatialReference",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "file"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "description": "file",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReviewFileNodeDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/file/v1/node/parse/{nodeId}": {
+            "post": {
+                "tags": [
+                    "成果管理-成果包zip相关接口"
+                ],
+                "summary": "获取成果包中的基本信息",
+                "operationId": "parseZgTxtUsingPOST",
+                "parameters": [
+                    {
+                        "name": "nodeId",
+                        "in": "path",
+                        "description": "nodeId",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/file/v1/node/preview/{nodeId}": {
+            "get": {
+                "tags": [
+                    "成果管理-成果包zip相关接口"
+                ],
+                "summary": "预览zip包中的文件",
+                "operationId": "getNodePreviewUrlUsingGET",
+                "parameters": [
+                    {
+                        "name": "nodeId",
+                        "in": "path",
+                        "description": "nodeId",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResourceFileUrlVO«object»"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/file/v1/node/tree/{packageId}": {
+            "get": {
+                "tags": [
+                    "成果管理-成果包zip相关接口"
+                ],
+                "summary": "获取成果包目录树",
+                "operationId": "getProcessFileNodeTreeUsingGET",
+                "parameters": [
+                    {
+                        "name": "packageId",
+                        "in": "path",
+                        "description": "packageId",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ReviewFileNodeDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/file/v1/node/{reviewFileNodeId}": {
+            "delete": {
+                "tags": [
+                    "成果管理-成果包zip相关接口"
+                ],
+                "summary": "删除成果包节点",
+                "operationId": "deleteNodeUsingDELETE",
+                "parameters": [
+                    {
+                        "name": "reviewFileNodeId",
+                        "in": "path",
+                        "description": "reviewFileNodeId",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/file/v1/nof/{nodeId}": {
+            "get": {
+                "tags": [
+                    "成果管理-成果包zip相关接口"
+                ],
+                "summary": "下载文件",
+                "operationId": "downloadNodeOrFileUsingGET",
+                "parameters": [
+                    {
+                        "name": "nodeId",
+                        "in": "path",
+                        "description": "原始文件id或压缩包中节点id",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/file/v1/ruku/test": {
+            "post": {
+                "tags": [
+                    "filetransfer",
+                    "成果管理-成果包zip相关接口"
+                ],
+                "summary": "上传文件",
+                "description": "真正的上传文件接口",
+                "operationId": "testRUKUUsingPOST",
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "query",
+                        "description": "taskId",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "file"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "description": "file",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/file/v1/upload": {
+            "post": {
+                "tags": [
+                    "filetransfer",
+                    "成果管理-成果包zip相关接口"
+                ],
+                "summary": "上传文件",
+                "description": "真正的上传文件接口",
+                "operationId": "chunkUploadFileUsingPOST",
+                "parameters": [
+                    {
+                        "name": "async",
+                        "in": "query",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "chunkNumber",
+                        "in": "query",
+                        "description": "当前分片号（从1开始）",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "maximum": 9223372036854775807,
+                            "exclusiveMaximum": false,
+                            "minimum": 0,
+                            "exclusiveMinimum": false,
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "chunkSize",
+                        "in": "query",
+                        "description": "既定的分片大小",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "maximum": 9223372036854775807,
+                            "exclusiveMaximum": false,
+                            "minimum": 0,
+                            "exclusiveMinimum": false,
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "currentChunkSize",
+                        "in": "query",
+                        "description": "当前分片大小",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "maximum": 9223372036854775807,
+                            "exclusiveMaximum": false,
+                            "minimum": 0,
+                            "exclusiveMinimum": false,
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "file",
+                        "in": "query",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string",
+                            "format": "binary"
+                        }
+                    },
+                    {
+                        "name": "fileType",
+                        "in": "query",
+                        "description": "原始文件类型(单独的文件传2，压缩包内节点文件传3)",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "filename",
+                        "in": "query",
+                        "description": "文件名称（包含后缀）",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "identifier",
+                        "in": "query",
+                        "description": "文件md5值",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "parentNodeId",
+                        "in": "query",
+                        "description": "修改zip节点时，上级节点id，上传zip节点文件时需要",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "parseAfterUploaded",
+                        "in": "query",
+                        "description": "冗余字段",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "totalChunks",
+                        "in": "query",
+                        "description": "总分片数量",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "maximum": 9223372036854775807,
+                            "exclusiveMaximum": false,
+                            "minimum": 0,
+                            "exclusiveMinimum": false,
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "totalSize",
+                        "in": "query",
+                        "description": "文件总大小",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "usercode",
+                        "in": "query",
+                        "description": "用户唯一编码（后台获取，前端无需传递）",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/file/v2/nof/test": {
+            "get": {
+                "tags": [
+                    "成果管理-成果包zip相关接口"
+                ],
+                "summary": "测试下载文件,返回url",
+                "operationId": "testDownloadNodeOrFileV2UsingGET",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/file/v2/nof/{nodeId}": {
+            "get": {
+                "tags": [
+                    "成果管理-成果包zip相关接口"
+                ],
+                "summary": "下载文件,返回url",
+                "operationId": "downloadNodeOrFileV2UsingGET",
+                "parameters": [
+                    {
+                        "name": "nodeId",
+                        "in": "path",
+                        "description": "原始文件id或压缩包中节点id",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/file/v3": {
+            "get": {
+                "tags": [
+                    "成果管理-成果包zip相关接口"
+                ],
+                "summary": "根据项目名称下载文件",
+                "operationId": "downloadNodeOrFileV3UsingGET",
+                "parameters": [
+                    {
+                        "name": "names",
+                        "in": "query",
+                        "description": "names",
+                        "required": true,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/public/reviewfile/v1/chunkinfo": {
+            "post": {
+                "tags": [
+                    "filetransfer",
+                    "成果管理-成果包zip相关接口"
+                ],
+                "summary": "获取断点文件信息",
+                "description": "获取断点信息",
+                "operationId": "getTodoChunkNumUsingPOST",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UploadFileForm"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/public/mp/v1/one": {
+            "put": {
+                "tags": [
+                    "模型库相关接口"
+                ],
+                "summary": "修改模型",
+                "operationId": "updateSsUsingPUT",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ModelProductUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "模型库相关接口"
+                ],
+                "summary": "添加一个模型",
+                "operationId": "saveSsUsingPOST_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ModelProductCreateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/public/mp/v1/one/{id}": {
+            "delete": {
+                "tags": [
+                    "模型库相关接口"
+                ],
+                "summary": "删除一个模型（级联删除模型文件）",
+                "operationId": "deleteSsUsingDELETE",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/public/mp/v1/page": {
+            "post": {
+                "tags": [
+                    "模型库相关接口"
+                ],
+                "summary": "分页获取模型",
+                "operationId": "getSsPageUsingPOST",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MpPageRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Pagination"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/rp/v1": {
+            "get": {
+                "tags": [
+                    "成果管理功能"
+                ],
+                "summary": "根据项目名称获取单个成果信息",
+                "operationId": "getByProNameUsingGET",
+                "parameters": [
+                    {
+                        "name": "proName",
+                        "in": "query",
+                        "description": "项目名称",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResultProjectDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "成果管理功能"
+                ],
+                "summary": "编辑成果项目表单信息（不包括成果包id）",
+                "operationId": "updateRpUsingPUT_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ResultProjectUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "成果管理功能"
+                ],
+                "summary": "新建一个项目",
+                "operationId": "createRpUsingPOST_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ResultProjectCreateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "成果管理功能"
+                ],
+                "summary": "删除项目",
+                "operationId": "delRpsUsingDELETE_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/rp/v1/page": {
+            "post": {
+                "tags": [
+                    "成果管理功能"
+                ],
+                "summary": "多条件分页查询项目",
+                "operationId": "pageGetRpUsingPOST_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ResultProjectPageRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Pagination"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/rp/v1/result": {
+            "get": {
+                "tags": [
+                    "成果管理功能"
+                ],
+                "summary": "根据项目名称获取成果包中指定目录下的文件信息",
+                "operationId": "getResultDirFileInfosUsingGET",
+                "parameters": [
+                    {
+                        "name": "proName",
+                        "in": "query",
+                        "description": "项目名称",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ReviewFileNodeDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/review/opinion/v1": {
+            "get": {
+                "tags": [
+                    "审查意见"
+                ],
+                "summary": "条件查询",
+                "operationId": "searchUsingGET",
+                "parameters": [
+                    {
+                        "name": "pointType",
+                        "in": "query",
+                        "description": "要点类型",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "reviewTaskId",
+                        "in": "query",
+                        "description": "审查任务 id",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/审查意见实体"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "审查意见"
+                ],
+                "summary": "保存审查意见",
+                "operationId": "saveOpinionUsingPOST",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/审查意见保存实体"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/审查意见实体"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/review/opinion/v1/batch": {
+            "delete": {
+                "tags": [
+                    "审查意见"
+                ],
+                "summary": "批量删除",
+                "operationId": "deleteBatchUsingDELETE",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/review/opinion/v1/{id}": {
+            "post": {
+                "tags": [
+                    "审查意见"
+                ],
+                "summary": "更新审查意见",
+                "operationId": "updateOpinionUsingPOST",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/审查意见保存实体"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/审查意见实体"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/review/task/v1": {
+            "post": {
+                "tags": [
+                    "审查任务"
+                ],
+                "summary": "添加",
+                "operationId": "addUsingPOST",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/审查任务保存实体"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/审查任务实体"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/review/task/v1/batch": {
+            "delete": {
+                "tags": [
+                    "审查任务"
+                ],
+                "summary": "批量删除",
+                "operationId": "deleteBatchUsingDELETE_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/review/task/v1/instance/{reviewTaskId}": {
+            "get": {
+                "tags": [
+                    "审查任务"
+                ],
+                "summary": "获取审查任务刚性审查计算状态",
+                "operationId": "getReviewTaskStatusUsingGET",
+                "parameters": [
+                    {
+                        "name": "reviewTaskId",
+                        "in": "path",
+                        "description": "reviewTaskId",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReviewTaskCalcInfoDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "审查任务"
+                ],
+                "summary": "启动审查任务刚性审查",
+                "operationId": "startReviewTaskCalcUsingPOST",
+                "parameters": [
+                    {
+                        "name": "reviewTaskId",
+                        "in": "path",
+                        "description": "reviewTaskId",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/review/task/v1/materials/{reviewTaskId}": {
+            "get": {
+                "tags": [
+                    "审查任务"
+                ],
+                "summary": "获取材料审查的文件列表",
+                "operationId": "getMaterialsFileListUsingGET",
+                "parameters": [
+                    {
+                        "name": "reviewTaskId",
+                        "in": "path",
+                        "description": "reviewTaskId",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/ReviewFileNodeListDto"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/review/task/v1/report": {
+            "post": {
+                "tags": [
+                    "审查任务"
+                ],
+                "summary": "生成审查报告",
+                "operationId": "createReviewTaskReportUsingPOST",
+                "parameters": [
+                    {
+                        "name": "elasticityPointName",
+                        "in": "query",
+                        "description": "弹性审查要点名称",
+                        "required": false,
+                        "style": "pipeDelimited",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "file",
+                        "in": "query",
+                        "description": "图片文件",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string",
+                            "format": "binary"
+                        }
+                    },
+                    {
+                        "name": "fileName",
+                        "in": "query",
+                        "description": "图片文件名（包含后缀，默认使用report.png）",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "reportName",
+                        "in": "query",
+                        "description": "报告名称，不传默认使用report.docx",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "reviewTaskId",
+                        "in": "query",
+                        "description": "审查任务id",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/review/task/v1/search": {
+            "post": {
+                "tags": [
+                    "审查任务"
+                ],
+                "summary": "条件查询",
+                "operationId": "searchUsingPOST",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/审查任务查询实体"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/审查任务实体"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/review/task/v1/{id}": {
+            "put": {
+                "tags": [
+                    "审查任务"
+                ],
+                "summary": "更新审查状态",
+                "operationId": "updateStateUsingPUT",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "state",
+                        "in": "query",
+                        "description": "state",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "MANUAL_REVIEW",
+                                "MANUAL_REVIEW_COMPLETED",
+                                "MANUAL_REVIEW_FAIL",
+                                "WAIT_MANUAL_REVIEW"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/审查任务实体"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/review/task/v2/v1": {
+            "put": {
+                "tags": [
+                    "审查任务v2"
+                ],
+                "summary": "修改",
+                "operationId": "updateUsingPUT",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/审查任务更新实体"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/审查任务实体"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "审查任务v2"
+                ],
+                "summary": "添加",
+                "operationId": "addUsingPOST_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/审查任务保存实体"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/审查任务实体"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/review/task/v2/v1/batch": {
+            "delete": {
+                "tags": [
+                    "审查任务v2"
+                ],
+                "summary": "批量删除",
+                "operationId": "deleteBatchUsingDELETE_2",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/review/task/v2/v1/search": {
+            "post": {
+                "tags": [
+                    "审查任务v2"
+                ],
+                "summary": "条件查询",
+                "operationId": "searchUsingPOST_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/审查任务查询实体"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/审查任务实体"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/public/ss/v1/one": {
+            "put": {
+                "tags": [
+                    "场景模拟rest接口"
+                ],
+                "summary": "修改方案基础信息",
+                "operationId": "updateSsUsingPUT_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SsUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "场景模拟rest接口"
+                ],
+                "summary": "保存方案基础信息",
+                "operationId": "saveSsUsingPOST_2",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SsSaveRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/public/ss/v1/one/{guid}": {
+            "delete": {
+                "tags": [
+                    "场景模拟rest接口"
+                ],
+                "summary": "删除方案基础（级联删除分析记录）",
+                "operationId": "deleteSsUsingDELETE_1",
+                "parameters": [
+                    {
+                        "name": "guid",
+                        "in": "path",
+                        "description": "guid",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/public/ss/v1/page": {
+            "post": {
+                "tags": [
+                    "场景模拟rest接口"
+                ],
+                "summary": "分页获取方案列表",
+                "operationId": "getSsPageUsingPOST_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SsPageRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Pagination"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/public/ssa/v1/one": {
+            "post": {
+                "tags": [
+                    "场景模拟rest接口"
+                ],
+                "summary": "保存或更新方案分析记录",
+                "operationId": "saveSsaUsingPOST",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SsaSaveRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/public/ssa/v1/one/{ssguid}/{type}": {
+            "get": {
+                "tags": [
+                    "场景模拟rest接口"
+                ],
+                "summary": "获取某个方案的某种分析记录",
+                "operationId": "getSsaPageUsingGET",
+                "parameters": [
+                    {
+                        "name": "ssguid",
+                        "in": "path",
+                        "description": "ssguid",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "type",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SsaDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/public/v1/attach": {
+            "post": {
+                "tags": [
+                    "场景模拟rest接口"
+                ],
+                "summary": "上传附件并获取附件的唯一url",
+                "operationId": "uploadAttachFileUsingPOST",
+                "parameters": [
+                    {
+                        "name": "file",
+                        "in": "query",
+                        "description": "附件的二进制流",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string",
+                            "format": "binary"
+                        }
+                    },
+                    {
+                        "name": "fileSize",
+                        "in": "query",
+                        "description": "文件大小（byte）",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "md5",
+                        "in": "query",
+                        "description": "文件md5值",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "文件名",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/public/v1/attach/{fileIdAndSuffix}": {
+            "get": {
+                "tags": [
+                    "场景模拟rest接口"
+                ],
+                "summary": "文件外链url，二进制流中转",
+                "operationId": "uploadAttachFileUsingGET",
+                "parameters": [
+                    {
+                        "name": "fileIdAndSuffix",
+                        "in": "path",
+                        "description": "fileIdAndSuffix",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/record/v1": {
+            "get": {
+                "tags": [
+                    "用户搜索记录相关接口"
+                ],
+                "summary": "查询当前用户搜索次数前5的项目",
+                "operationId": "listTop5RecordUsingGET",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/SearchRecordDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "用户搜索记录相关接口"
+                ],
+                "summary": "添加",
+                "operationId": "addUsingPOST_2",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SearchRecordRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SearchRecordDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "用户搜索记录相关接口"
+                ],
+                "summary": "删除当前用户所有搜索记录",
+                "operationId": "deleteAllRecordUsingDELETE",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/rest/private/record/v1/ruku/progress": {
+            "get": {
+                "tags": [
+                    "用户搜索记录相关接口"
+                ],
+                "summary": "成果包入库进度查询",
+                "operationId": "getProgressUsingGET",
+                "parameters": [
+                    {
+                        "name": "reviewFileId",
+                        "in": "query",
+                        "description": "reviewFileId",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/njcd/xsleuth/dev/db": {
+            "delete": {
+                "tags": [
+                    "x-sleuth-dev-controller"
+                ],
+                "summary": "clearDb",
+                "operationId": "clearDbUsingDELETE",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "x-auth-token": [
+                            "global"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BaseQueryRequest": {
+                "title": "BaseQueryRequest",
+                "type": "object",
+                "properties": {
+                    "keyword": {
+                        "type": "string",
+                        "description": "查询关键词"
+                    },
+                    "pageNum": {
+                        "type": "integer",
+                        "description": "页码，从0开始",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "description": "每页数量",
+                        "format": "int32"
+                    }
+                }
+            },
+            "BuildingProjectDto": {
+                "title": "BuildingProjectDto",
+                "type": "object",
+                "properties": {
+                    "fileName": {
+                        "type": "string"
+                    },
+                    "fileUrl": {
+                        "type": "string"
+                    },
+                    "geojson": {
+                        "type": "string"
+                    },
+                    "ggkjbl": {
+                        "type": "string",
+                        "description": "公共空间比例"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "jzmd": {
+                        "type": "string",
+                        "description": "建筑密度"
+                    },
+                    "kfkjlyl": {
+                        "type": "string",
+                        "description": "开放空间利用率"
+                    },
+                    "lhl": {
+                        "type": "string",
+                        "description": "绿化率"
+                    },
+                    "projectName": {
+                        "type": "string"
+                    },
+                    "rjl": {
+                        "type": "string",
+                        "description": "容积率"
+                    },
+                    "serverUrl": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CityDesignProject": {
+                "title": "CityDesignProject",
+                "type": "object",
+                "properties": {
+                    "geojson": {
+                        "type": "string"
+                    },
+                    "ggkjbl": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "jzmd": {
+                        "type": "string"
+                    },
+                    "kfkjlyl": {
+                        "type": "string"
+                    },
+                    "lhl": {
+                        "type": "string"
+                    },
+                    "projectName": {
+                        "type": "string"
+                    },
+                    "rjl": {
+                        "type": "string"
+                    },
+                    "score": {
+                        "type": "string"
+                    },
+                    "serverUrl": {
+                        "type": "string"
+                    },
+                    "staffingLevel": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CityDesignProjectDto": {
+                "title": "CityDesignProjectDto",
+                "type": "object",
+                "properties": {
+                    "geojson": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "proName": {
+                        "type": "string"
+                    },
+                    "serverUrl": {
+                        "type": "string"
+                    },
+                    "staffingLevel": {
+                        "type": "string",
+                        "description": "编制层级"
+                    },
+                    "staffingState": {
+                        "type": "string",
+                        "description": "编制状态"
+                    }
+                }
+            },
+            "CommonGroupCreateRequest": {
+                "title": "CommonGroupCreateRequest",
+                "type": "object",
+                "properties": {
+                    "businessType": {
+                        "type": "integer",
+                        "description": "业务类型（0：漫游路径，1：视点）",
+                        "format": "int32"
+                    },
+                    "gtype": {
+                        "type": "integer",
+                        "description": "组类型（0：个人的，1：全局的）",
+                        "format": "int32"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "组名称"
+                    }
+                }
+            },
+            "CommonGroupDto": {
+                "title": "CommonGroupDto",
+                "type": "object",
+                "properties": {
+                    "businessType": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "ctime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "gtype": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CommonGroupSortRequest": {
+                "title": "CommonGroupSortRequest",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "组id"
+                    },
+                    "sortOp": {
+                        "type": "integer",
+                        "description": "0上移， 1下移",
+                        "format": "int32"
+                    }
+                }
+            },
+            "CommonGroupUpdateRequest": {
+                "title": "CommonGroupUpdateRequest",
+                "required": [
+                    "id"
+                ],
+                "type": "object",
+                "properties": {
+                    "businessType": {
+                        "type": "integer",
+                        "description": "业务类型（0：漫游路径，1：视点）",
+                        "format": "int32"
+                    },
+                    "gtype": {
+                        "type": "integer",
+                        "description": "组类型（0：个人的，1：全局的）",
+                        "format": "int32"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "组名称"
+                    }
+                }
+            },
+            "CommonMember": {
+                "title": "CommonMember",
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string"
+                    },
+                    "ctime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "furls": {
+                        "type": "string"
+                    },
+                    "gid": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "remark": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CommonMemberCreateRequest": {
+                "title": "CommonMemberCreateRequest",
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "主体内容"
+                    },
+                    "furls": {
+                        "type": "string",
+                        "description": "附件，图片视频等，必须是json格式数组"
+                    },
+                    "gid": {
+                        "type": "string",
+                        "description": "组id"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "名称"
+                    },
+                    "remark": {
+                        "type": "string",
+                        "description": "备注等（非必须）"
+                    }
+                }
+            },
+            "CommonMemberFuzzyPageRequest": {
+                "title": "CommonMemberFuzzyPageRequest",
+                "type": "object",
+                "properties": {
+                    "businessType": {
+                        "type": "integer",
+                        "description": "业务类型id",
+                        "format": "int32"
+                    },
+                    "keyword": {
+                        "type": "string",
+                        "description": "模糊搜索关键字"
+                    },
+                    "pageIndex": {
+                        "type": "integer",
+                        "description": "页码, 从1开始",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "description": "页大小，后台默认5",
+                        "format": "int32"
+                    }
+                }
+            },
+            "CommonMemberPageRequest": {
+                "title": "CommonMemberPageRequest",
+                "type": "object",
+                "properties": {
+                    "gid": {
+                        "type": "string",
+                        "description": "组id"
+                    },
+                    "pageIndex": {
+                        "type": "integer",
+                        "description": "页码, 从1开始",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "description": "页大小，后台默认5",
+                        "format": "int32"
+                    }
+                }
+            },
+            "CommonMemberUpdateRequest": {
+                "title": "CommonMemberUpdateRequest",
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "主体内容"
+                    },
+                    "furls": {
+                        "type": "string",
+                        "description": "附件，保存图片视频等，必须是json格式数组"
+                    },
+                    "gid": {
+                        "type": "string",
+                        "description": "组id（暂冗余）"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "组员id"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "名称"
+                    },
+                    "remark": {
+                        "type": "string",
+                        "description": "备注等（非必须）"
+                    }
+                }
+            },
+            "ContrastProjectDto": {
+                "title": "ContrastProjectDto",
+                "type": "object",
+                "properties": {
+                    "buildingProjectList": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BuildingProjectDto"
+                        }
+                    },
+                    "cityDesignProject": {
+                        "$ref": "#/components/schemas/CityDesignProject"
+                    },
+                    "handlingUnit": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "projectName": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ContrastProjectRequest": {
+                "title": "ContrastProjectRequest",
+                "type": "object",
+                "properties": {
+                    "cityDesignProject": {
+                        "description": "关联的城市设计方案",
+                        "$ref": "#/components/schemas/CityDesignProject"
+                    },
+                    "handlingUnit": {
+                        "type": "string",
+                        "description": "经办部门"
+                    },
+                    "projectName": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ContrastProjectUpdateRequest": {
+                "title": "ContrastProjectUpdateRequest",
+                "type": "object",
+                "properties": {
+                    "cancel": {
+                        "type": "boolean",
+                        "description": "是否取消关联，取消关联时传true，关联时可以不传",
+                        "example": false
+                    },
+                    "cityDesignProject": {
+                        "description": "关联的城市设计方案",
+                        "$ref": "#/components/schemas/CityDesignProject"
+                    },
+                    "handlingUnit": {
+                        "type": "string",
+                        "description": "经办部门"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "projectName": {
+                        "type": "string"
+                    }
+                }
+            },
+            "FieldOrder": {
+                "title": "FieldOrder",
+                "type": "object",
+                "properties": {
+                    "field": {
+                        "type": "string"
+                    },
+                    "order": {
+                        "type": "string"
+                    }
+                }
+            },
+            "GeojsonDTO": {
+                "title": "GeojsonDTO",
+                "type": "object",
+                "properties": {
+                    "geojson": {
+                        "type": "object",
+                        "description": "geojson",
+                        "example": "{}"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "id",
+                        "example": "123123123"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "name",
+                        "example": "地块一"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "type",
+                        "example": "point"
+                    }
+                }
+            },
+            "InputStream": {
+                "title": "InputStream",
+                "type": "object"
+            },
+            "ModelCalcInstanceDto": {
+                "title": "ModelCalcInstanceDto",
+                "type": "object",
+                "properties": {
+                    "calcInstanceId": {
+                        "type": "string"
+                    },
+                    "endTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "modelVersionCode": {
+                        "type": "string"
+                    },
+                    "modelVersionName": {
+                        "type": "string"
+                    },
+                    "reviewTaskId": {
+                        "type": "string"
+                    },
+                    "startTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "ModelProductCreateRequest": {
+                "title": "ModelProductCreateRequest",
+                "required": [
+                    "depth",
+                    "height",
+                    "width"
+                ],
+                "type": "object",
+                "properties": {
+                    "depth": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "furl": {
+                        "type": "string",
+                        "description": "模型文件外链"
+                    },
+                    "height": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "模型名称"
+                    },
+                    "thumbnail": {
+                        "type": "string",
+                        "description": "模型缩略图base64"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "暂定（建筑，景观，基础设施，个人模型，这四种）"
+                    },
+                    "width": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                }
+            },
+            "ModelProductUpdateRequest": {
+                "title": "ModelProductUpdateRequest",
+                "type": "object",
+                "properties": {
+                    "depth": {
+                        "type": "number",
+                        "description": "深度",
+                        "format": "double"
+                    },
+                    "furl": {
+                        "type": "string",
+                        "description": "模型文件外链"
+                    },
+                    "height": {
+                        "type": "number",
+                        "description": "高度",
+                        "format": "double"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "模型id"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "模型名称"
+                    },
+                    "thumbnail": {
+                        "type": "string",
+                        "description": "模型缩略图base64"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "暂定（建筑，景观，基础设施，个人模型，这四种）"
+                    },
+                    "width": {
+                        "type": "number",
+                        "description": "宽度！",
+                        "format": "double"
+                    }
+                }
+            },
+            "MpPageRequest": {
+                "title": "MpPageRequest",
+                "type": "object",
+                "properties": {
+                    "pageIndex": {
+                        "type": "integer",
+                        "description": "页码, 从1开始",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "description": "页大小，后台默认5",
+                        "format": "int32"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "模型类型"
+                    }
+                }
+            },
+            "PageData«ContrastProjectDto»": {
+                "title": "PageData«ContrastProjectDto»",
+                "type": "object",
+                "properties": {
+                    "count": {
+                        "type": "integer",
+                        "description": "总数据量",
+                        "format": "int64"
+                    },
+                    "data": {
+                        "type": "array",
+                        "description": "数据",
+                        "items": {
+                            "$ref": "#/components/schemas/ContrastProjectDto"
+                        }
+                    },
+                    "first": {
+                        "type": "boolean",
+                        "description": "是否第一页",
+                        "example": false
+                    },
+                    "hasNext": {
+                        "type": "boolean",
+                        "description": "是否有下一页",
+                        "example": false
+                    },
+                    "hasPrev": {
+                        "type": "boolean",
+                        "description": "是否有上一页",
+                        "example": false
+                    },
+                    "index": {
+                        "type": "integer",
+                        "description": "当前页号",
+                        "format": "int32"
+                    },
+                    "last": {
+                        "type": "boolean",
+                        "description": "是否最后一页",
+                        "example": false
+                    },
+                    "length": {
+                        "type": "integer",
+                        "description": "查询到的数据量",
+                        "format": "int32"
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "description": "总页数",
+                        "format": "int32"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "description": "页大小",
+                        "format": "int32"
+                    }
+                }
+            },
+            "Pagination": {
+                "title": "Pagination",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "firstPage": {
+                        "type": "boolean"
+                    },
+                    "firstResult": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "lastPage": {
+                        "type": "boolean"
+                    },
+                    "nextPage": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageNo": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "prePage": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalPage": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "Resource": {
+                "title": "Resource",
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "file": {
+                        "type": "string",
+                        "format": "binary"
+                    },
+                    "filename": {
+                        "type": "string"
+                    },
+                    "inputStream": {
+                        "$ref": "#/components/schemas/InputStream"
+                    },
+                    "open": {
+                        "type": "boolean"
+                    },
+                    "readable": {
+                        "type": "boolean"
+                    },
+                    "uri": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "url": {
+                        "type": "string",
+                        "format": "url"
+                    }
+                }
+            },
+            "ResourceFileUrlVO«object»": {
+                "title": "ResourceFileUrlVO«object»",
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "format": "byte"
+                    },
+                    "data": {
+                        "type": "object"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "length": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "stream": {
+                        "type": "boolean"
+                    },
+                    "suffix": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResultPackageParseVO": {
+                "title": "ResultPackageParseVO",
+                "type": "object",
+                "properties": {
+                    "baseInfoNodeId": {
+                        "type": "string"
+                    },
+                    "dataSourcePath": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "flag": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "fullPath": {
+                        "type": "string"
+                    },
+                    "hasBaseInfo": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "hasDataSource": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "hasTif": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "packageId": {
+                        "type": "string"
+                    },
+                    "tifPath": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "ResultProjectCreateRequest": {
+                "title": "ResultProjectCreateRequest",
+                "required": [
+                    "proName",
+                    "proNum",
+                    "resultId"
+                ],
+                "type": "object",
+                "properties": {
+                    "approvalCode": {
+                        "type": "string"
+                    },
+                    "auditDepDirector": {
+                        "type": "string"
+                    },
+                    "auditDepHandler": {
+                        "type": "string"
+                    },
+                    "comUnit": {
+                        "type": "string"
+                    },
+                    "endDate": {
+                        "type": "string"
+                    },
+                    "handlingUnit": {
+                        "type": "string"
+                    },
+                    "proCode": {
+                        "type": "string"
+                    },
+                    "proHead": {
+                        "type": "string"
+                    },
+                    "proName": {
+                        "type": "string"
+                    },
+                    "proNum": {
+                        "type": "string"
+                    },
+                    "proRange": {
+                        "type": "string"
+                    },
+                    "proType": {
+                        "type": "string"
+                    },
+                    "regionCode": {
+                        "type": "string"
+                    },
+                    "regionName": {
+                        "type": "string"
+                    },
+                    "resDepDirector": {
+                        "type": "string"
+                    },
+                    "resDepHandler": {
+                        "type": "string"
+                    },
+                    "resultId": {
+                        "type": "string"
+                    },
+                    "showDay": {
+                        "type": "boolean"
+                    },
+                    "staffingLevel": {
+                        "type": "string"
+                    },
+                    "staffingResult": {
+                        "type": "string"
+                    },
+                    "staffingUnit": {
+                        "type": "string"
+                    },
+                    "staffingUnitTel": {
+                        "type": "string"
+                    },
+                    "startDate": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResultProjectDto": {
+                "title": "ResultProjectDto",
+                "type": "object",
+                "properties": {
+                    "approvalCode": {
+                        "type": "string"
+                    },
+                    "auditDepDirector": {
+                        "type": "string"
+                    },
+                    "auditDepHandler": {
+                        "type": "string"
+                    },
+                    "canDel": {
+                        "type": "boolean"
+                    },
+                    "comUnit": {
+                        "type": "string"
+                    },
+                    "ctime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "cuserCode": {
+                        "type": "string"
+                    },
+                    "endDate": {
+                        "type": "string"
+                    },
+                    "handlingUnit": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "inType": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "proCode": {
+                        "type": "string"
+                    },
+                    "proHead": {
+                        "type": "string"
+                    },
+                    "proName": {
+                        "type": "string"
+                    },
+                    "proNum": {
+                        "type": "string"
+                    },
+                    "proRange": {
+                        "type": "string"
+                    },
+                    "proType": {
+                        "type": "string"
+                    },
+                    "regionCode": {
+                        "type": "string"
+                    },
+                    "regionName": {
+                        "type": "string"
+                    },
+                    "resDepDirector": {
+                        "type": "string"
+                    },
+                    "resDepHandler": {
+                        "type": "string"
+                    },
+                    "resultId": {
+                        "type": "string"
+                    },
+                    "staffingLevel": {
+                        "type": "string"
+                    },
+                    "staffingResult": {
+                        "type": "string"
+                    },
+                    "staffingUnit": {
+                        "type": "string"
+                    },
+                    "staffingUnitTel": {
+                        "type": "string"
+                    },
+                    "startDate": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResultProjectPageRequest": {
+                "title": "ResultProjectPageRequest",
+                "type": "object",
+                "properties": {
+                    "endDate": {
+                        "type": "string"
+                    },
+                    "handlingUnit": {
+                        "type": "string"
+                    },
+                    "keyword": {
+                        "type": "string",
+                        "description": "关键字"
+                    },
+                    "orderList": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/FieldOrder"
+                        }
+                    },
+                    "pageIndex": {
+                        "type": "integer",
+                        "description": "页码, 从1开始",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "description": "页大小，后台默认5",
+                        "format": "int32"
+                    },
+                    "proType": {
+                        "type": "string"
+                    },
+                    "regionCode": {
+                        "type": "string"
+                    },
+                    "staffingLevel": {
+                        "type": "string"
+                    },
+                    "startDate": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResultProjectUpdateRequest": {
+                "title": "ResultProjectUpdateRequest",
+                "required": [
+                    "id"
+                ],
+                "type": "object",
+                "properties": {
+                    "approvalCode": {
+                        "type": "string"
+                    },
+                    "auditDepDirector": {
+                        "type": "string"
+                    },
+                    "auditDepHandler": {
+                        "type": "string"
+                    },
+                    "comUnit": {
+                        "type": "string"
+                    },
+                    "endDate": {
+                        "type": "string"
+                    },
+                    "handlingUnit": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "proCode": {
+                        "type": "string"
+                    },
+                    "proHead": {
+                        "type": "string"
+                    },
+                    "proName": {
+                        "type": "string"
+                    },
+                    "proNum": {
+                        "type": "string"
+                    },
+                    "proRange": {
+                        "type": "string"
+                    },
+                    "proType": {
+                        "type": "string"
+                    },
+                    "regionCode": {
+                        "type": "string"
+                    },
+                    "regionName": {
+                        "type": "string"
+                    },
+                    "resDepDirector": {
+                        "type": "string"
+                    },
+                    "resDepHandler": {
+                        "type": "string"
+                    },
+                    "showDay": {
+                        "type": "boolean"
+                    },
+                    "staffingLevel": {
+                        "type": "string"
+                    },
+                    "staffingResult": {
+                        "type": "string"
+                    },
+                    "staffingUnit": {
+                        "type": "string"
+                    },
+                    "staffingUnitTel": {
+                        "type": "string"
+                    },
+                    "startDate": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ReviewFileNodeDto": {
+                "title": "ReviewFileNodeDto",
+                "type": "object",
+                "properties": {
+                    "canUpdate": {
+                        "type": "boolean",
+                        "description": "标识当前节点是否可编辑",
+                        "example": false
+                    },
+                    "children": {
+                        "type": "array",
+                        "description": "子集",
+                        "items": {
+                            "$ref": "#/components/schemas/ReviewFileNodeDto"
+                        }
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "level": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "parentId": {
+                        "type": "string"
+                    },
+                    "rootId": {
+                        "type": "string"
+                    },
+                    "serverUrl": {
+                        "type": "string"
+                    },
+                    "thumbnail": {
+                        "type": "string",
+                        "description": "base64格式缩略图"
+                    },
+                    "type": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "ReviewFileNodeListDto": {
+                "title": "ReviewFileNodeListDto",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "parentId": {
+                        "type": "string"
+                    },
+                    "rootId": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "ReviewTaskCalcInfoDto": {
+                "title": "ReviewTaskCalcInfoDto",
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ModelCalcInstanceDto"
+                        }
+                    },
+                    "status": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SearchRecordDto": {
+                "title": "SearchRecordDto",
+                "type": "object",
+                "properties": {
+                    "count": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "level": {
+                        "type": "string"
+                    },
+                    "projectName": {
+                        "type": "string"
+                    },
+                    "startDate": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SearchRecordRequest": {
+                "title": "SearchRecordRequest",
+                "type": "object",
+                "properties": {
+                    "level": {
+                        "type": "string"
+                    },
+                    "projectName": {
+                        "type": "string"
+                    },
+                    "startDate": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SsPageRequest": {
+                "title": "SsPageRequest",
+                "type": "object",
+                "properties": {
+                    "keyword": {
+                        "type": "string",
+                        "description": "关键字"
+                    },
+                    "pageIndex": {
+                        "type": "integer",
+                        "description": "页码, 从1开始",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "description": "页大小，后台默认5",
+                        "format": "int32"
+                    }
+                }
+            },
+            "SsSaveRequest": {
+                "title": "SsSaveRequest",
+                "required": [
+                    "content",
+                    "fname",
+                    "guid",
+                    "schemeName"
+                ],
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string"
+                    },
+                    "fname": {
+                        "type": "string"
+                    },
+                    "guid": {
+                        "type": "string"
+                    },
+                    "schemeName": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SsUpdateRequest": {
+                "title": "SsUpdateRequest",
+                "required": [
+                    "guid"
+                ],
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string"
+                    },
+                    "guid": {
+                        "type": "string"
+                    },
+                    "schemeName": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SsaDto": {
+                "title": "SsaDto",
+                "type": "object",
+                "properties": {
+                    "config": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "ssguid": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    }
+                }
+            },
+            "SsaSaveRequest": {
+                "title": "SsaSaveRequest",
+                "required": [
+                    "config",
+                    "ssguid",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "config": {
+                        "type": "string"
+                    },
+                    "ssguid": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    }
+                }
+            },
+            "UploadFileForm": {
+                "title": "UploadFileForm",
+                "required": [
+                    "chunkNumber",
+                    "chunkSize",
+                    "currentChunkSize",
+                    "fileType",
+                    "filename",
+                    "identifier",
+                    "totalChunks",
+                    "totalSize"
+                ],
+                "type": "object",
+                "properties": {
+                    "async": {
+                        "type": "boolean"
+                    },
+                    "chunkNumber": {
+                        "type": "integer",
+                        "description": "当前分片号（从1开始）",
+                        "format": "int32"
+                    },
+                    "chunkSize": {
+                        "type": "integer",
+                        "description": "既定的分片大小",
+                        "format": "int64"
+                    },
+                    "currentChunkSize": {
+                        "type": "integer",
+                        "description": "当前分片大小",
+                        "format": "int64"
+                    },
+                    "file": {
+                        "type": "string",
+                        "format": "binary"
+                    },
+                    "fileType": {
+                        "type": "integer",
+                        "description": "原始文件类型(单独的文件传2，压缩包内节点文件传3)",
+                        "format": "int32"
+                    },
+                    "filename": {
+                        "type": "string",
+                        "description": "文件名称（包含后缀）"
+                    },
+                    "identifier": {
+                        "type": "string",
+                        "description": "文件md5值"
+                    },
+                    "parentNodeId": {
+                        "type": "string",
+                        "description": "修改zip节点时，上级节点id，上传zip节点文件时需要"
+                    },
+                    "parseAfterUploaded": {
+                        "type": "boolean",
+                        "description": "冗余字段",
+                        "example": false
+                    },
+                    "totalChunks": {
+                        "type": "integer",
+                        "description": "总分片数量",
+                        "format": "int32"
+                    },
+                    "totalSize": {
+                        "type": "integer",
+                        "description": "文件总大小",
+                        "format": "int64"
+                    },
+                    "usercode": {
+                        "type": "string",
+                        "description": "用户唯一编码（后台获取，前端无需传递）"
+                    }
+                }
+            },
+            "审查任务保存实体": {
+                "title": "审查任务保存实体",
+                "type": "object",
+                "properties": {
+                    "geojson": {
+                        "type": "string"
+                    },
+                    "handlingUnit": {
+                        "type": "string",
+                        "description": "经办部门"
+                    },
+                    "proCode": {
+                        "type": "string",
+                        "description": "项目编号"
+                    },
+                    "proName": {
+                        "type": "string",
+                        "description": "项目名称"
+                    },
+                    "resultId": {
+                        "type": "string",
+                        "description": "成果包id"
+                    },
+                    "serverUrl": {
+                        "type": "string",
+                        "description": "服务地址"
+                    },
+                    "staffingLevel": {
+                        "type": "string",
+                        "description": "编制层级"
+                    },
+                    "staffingState": {
+                        "type": "string",
+                        "description": "编制状态"
+                    },
+                    "startTime": {
+                        "type": "string",
+                        "description": "启动时间",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "审查任务实体": {
+                "title": "审查任务实体",
+                "type": "object",
+                "properties": {
+                    "geojson": {
+                        "type": "string"
+                    },
+                    "handlingUnit": {
+                        "type": "string",
+                        "description": "经办部门"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "proCode": {
+                        "type": "string",
+                        "description": "项目编号"
+                    },
+                    "proName": {
+                        "type": "string",
+                        "description": "项目名称"
+                    },
+                    "resultId": {
+                        "type": "string",
+                        "description": "成果包id"
+                    },
+                    "serverUrl": {
+                        "type": "string",
+                        "description": "服务地址"
+                    },
+                    "staffingLevel": {
+                        "type": "string",
+                        "description": "编制层级"
+                    },
+                    "staffingState": {
+                        "type": "string",
+                        "description": "编制状态"
+                    },
+                    "startTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "审查任务更新实体": {
+                "title": "审查任务更新实体",
+                "required": [
+                    "id"
+                ],
+                "type": "object",
+                "properties": {
+                    "geojson": {
+                        "type": "string"
+                    },
+                    "handlingUnit": {
+                        "type": "string",
+                        "description": "经办部门"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "proCode": {
+                        "type": "string",
+                        "description": "项目编号"
+                    },
+                    "proName": {
+                        "type": "string",
+                        "description": "项目名称"
+                    },
+                    "resultId": {
+                        "type": "string",
+                        "description": "成果包id"
+                    },
+                    "serverUrl": {
+                        "type": "string",
+                        "description": "服务地址"
+                    },
+                    "staffingLevel": {
+                        "type": "string",
+                        "description": "编制层级"
+                    },
+                    "staffingState": {
+                        "type": "string",
+                        "description": "编制状态"
+                    },
+                    "startTime": {
+                        "type": "string",
+                        "description": "启动时间",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "审查任务查询实体": {
+                "title": "审查任务查询实体",
+                "type": "object",
+                "properties": {
+                    "completeTimeBegin": {
+                        "type": "string",
+                        "description": "完成时间-起始点",
+                        "format": "date-time"
+                    },
+                    "completeTimeEnd": {
+                        "type": "string",
+                        "description": "完成时间-截止点",
+                        "format": "date-time"
+                    },
+                    "handlingUnit": {
+                        "type": "string",
+                        "description": "经办部门"
+                    },
+                    "key": {
+                        "type": "string",
+                        "description": "关键词（项目编号、项目名称）"
+                    },
+                    "proType": {
+                        "type": "string",
+                        "description": "项目类型"
+                    },
+                    "staffingLevel": {
+                        "type": "string",
+                        "description": "编制层级"
+                    },
+                    "staffingState": {
+                        "type": "string",
+                        "description": "编制状态"
+                    },
+                    "startDateBegin": {
+                        "type": "string",
+                        "description": "启动时间-起始点",
+                        "format": "date-time"
+                    },
+                    "startDateEnd": {
+                        "type": "string",
+                        "description": "启动时间-截止点",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "审查意见保存实体": {
+                "title": "审查意见保存实体",
+                "type": "object",
+                "properties": {
+                    "opinionDetail": {
+                        "type": "string",
+                        "description": "审查意见详情"
+                    },
+                    "pointName": {
+                        "type": "string",
+                        "description": "审查要点名称"
+                    },
+                    "pointType": {
+                        "type": "string",
+                        "description": "审查要点类型"
+                    },
+                    "reviewTaskId": {
+                        "type": "string",
+                        "description": "审查任务 id"
+                    }
+                }
+            },
+            "审查意见实体": {
+                "title": "审查意见实体",
+                "type": "object",
+                "properties": {
+                    "createDate": {
+                        "type": "string",
+                        "description": "创建时间",
+                        "format": "date-time"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "opinionDetail": {
+                        "type": "string",
+                        "description": "审查意见详情"
+                    },
+                    "pointName": {
+                        "type": "string",
+                        "description": "审查要点名称"
+                    },
+                    "pointType": {
+                        "type": "string",
+                        "description": "审查要点类型"
+                    },
+                    "reviewTaskId": {
+                        "type": "string",
+                        "description": "审查任务 id"
+                    },
+                    "updateDate": {
+                        "type": "string",
+                        "description": "修改时间",
+                        "format": "date-time"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "description": "用户 id"
+                    },
+                    "userName": {
+                        "type": "string",
+                        "description": "用户名"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "x-auth-token": {
+                "type": "apiKey",
+                "name": "x-auth-token",
+                "in": "header"
+            }
+        }
+    }
+}
